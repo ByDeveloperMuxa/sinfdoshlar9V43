@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наш любимый класс ❤️</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <a href="#about">О нас</a>
+        <a href="#gallery">Фото</a>
+        <a href="#stories">Истории</a>
+        <a href="#guestbook">Приветы</a>
+    </nav>
+
+    <header class="hero">
+        <h1 class="reveal">Наш класс ❤️</h1>
+        <p class="reveal">Место, где живут наши самые теплые воспоминания, школьные шутки и крепкая дружба ✨</p>
+        <a href="#gallery" class="btn reveal">Вспомнить всё</a>
+    </header>
+
+    <section id="about" class="reveal">
+        <div class="about-container">
+            <h2>Как это было... 😊</h2>
+            <p>Мы прошли через сотни уроков, исписали горы тетрадок и съели тысячи булочек в столовой. Но главное — мы были вместе!</p>
+        </div>
+    </section>
+
+    <section id="gallery" class="reveal">
+        <h2>Галерея моментов 📸</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://picsum.photos/400/400?random=1" alt="фото"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/400?random=2" alt="фото"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/400?random=3" alt="фото"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/400?random=4" alt="фото"></div>
+        </div>
+    </section>
+
+    <section id="stories" class="reveal">
+        <h2>Наши истории 📖</h2>
+        <div class="stories-grid">
+            <div class="card">
+                <h3>Тот самый поход 🌲</h3>
+                <p>Помните, как мы заблудились в трех соснах и жарили хлеб на костре? Это было легендарно!</p>
+            </div>
+            <div class="card">
+                <h3>Контрольная по физике ⚡</h3>
+                <p>Как мы передавали шпаргалки через весь кабинет, а учительница делала вид, что не замечает.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="members" class="reveal">
+        <h2>Наша банда ✨</h2>
+        <div class="tags">
+            <span class="tag">Сашка</span> <span class="tag">Марина</span> <span class="tag">Димка</span>
+            <span class="tag">Оля</span> <span class="tag">Андрей</span> <span class="tag">Лена</span>
+            <span class="tag">Серёга</span> <span class="tag">Наташа</span>
+        </div>
+    </section>
+
+    <section id="guestbook" class="reveal">
+        <h2>Напиши привет 👋</h2>
+        <div class="guestbook-box">
+            <input type="text" id="name" placeholder="Твое имя">
+            <textarea id="text" rows="3" placeholder="Твое сообщение..."></textarea>
+            <button class="btn send-btn" onclick="send()">Отправить ✨</button>
+            <div id="messages">
+                <div class="msg"><strong>Кл. рук:</strong> Ребята, вы самые лучшие! Горжусь вами! ❤️</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Сделано с ❤️ для нашего класса • 2026</p>
+    </footer>
+
+    <script>
+        // Анимация появления при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Логика гостевой книги
+        function send() {
+            const nameInput = document.getElementById('name');
+            const textInput = document.getElementById('text');
+            const container = document.getElementById('messages');
+
+            if (nameInput.value === "" || textInput.value === "") {
+                alert("Напиши что-нибудь, пожалуйста! 😊");
+                return;
+            }
+
+            const div = document.createElement('div');
+            div.className = 'msg';
+            div.innerHTML = `<strong>${nameInput.value}:</strong> ${textInput.value}`;
+            container.prepend(div);
+
+            nameInput.value = "";
+            textInput.value = "";
+        }
+    </script>
+</body>
+</html>
